@@ -7,7 +7,7 @@ public class BuiltInFn{
         int a = sc.nextInt();
         int b = sc.nextInt();
         int c = sc.nextInt();
-        int d = sc.nextInt();
+        // int d = sc.nextInt();
 
         // System.out.println(Math.pow(3, 5));
         // System.out.println(Math.sqrt(4));

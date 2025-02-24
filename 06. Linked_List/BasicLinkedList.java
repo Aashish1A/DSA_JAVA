@@ -66,7 +66,6 @@ public class BasicLinkedList{
         // System.out.println();
         // displayReverse(a);
 
-        // Finding length of a linkedlist
         System.out.print(length(a));
 
     }

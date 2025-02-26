@@ -68,9 +68,10 @@ public class MenuDrivenSinglyLinkedList {
                 System.out.println("List is empty");
                 return;
             }
-            head = head.next;
-            if (head == null) {
-                tail = null;
+            if (head == tail) {
+                head = tail = null;
+            }else{
+                head = head.next;
             }
             size--;
         }
@@ -81,21 +82,19 @@ public class MenuDrivenSinglyLinkedList {
                 System.out.println("List is empty");
                 return;
             }
-            if (head.next == null) {
-                head = null;
-                tail = null;
-                size = 0;
-                return;
+            if (head == tail) {  // Only one node in the list
+                head = tail = null;
+            } else {
+                Node temp = head;
+                while (temp.next != tail) {
+                    temp = temp.next;
+                }
+                temp.next = null;
+                tail = temp;
             }
-            Node temp = head;
-            while (temp.next != tail) {
-                temp = temp.next;
-            }
-            temp.next = null;
-            tail = temp;
             size--;
         }
-
+        
         // Delete at index
         void deleteAtIdx(int idx) {
             if (idx < 0 || idx >= size) {
@@ -117,6 +116,43 @@ public class MenuDrivenSinglyLinkedList {
             size--;
         }
 
+        // Return size
+        void length(){
+            System.out.println("The size of ll is : " + size);
+        }
+
+        // search by index
+        void searchByIdx(int idx) {
+            if (idx < 0 || idx >= size) {
+                System.out.println("Invalid index");
+                return;
+            }
+            
+            Node temp = head;
+            for (int i = 0; i < idx; i++) {
+                temp = temp.next;
+            }
+            
+            System.out.println("The value at index " + idx + " is: " + temp.data);
+        }
+        
+        // search by value
+        void searchByValue(int value) {
+            Node temp = head;
+            int index = 0;
+        
+            while (temp != null) {
+                if (temp.data == value) {
+                    System.out.println("The number " + value + " is found at index: " + index);
+                    return;
+                }
+                temp = temp.next;
+                index++;
+            }
+        
+            System.out.println("The number " + value + " is not in the list.");
+        }
+        
         // Display list
         void display() {
             if (head == null) {
@@ -145,7 +181,8 @@ public class MenuDrivenSinglyLinkedList {
             System.out.println("5. Delete tail");
             System.out.println("6. Delete at index");
             System.out.println("7. Display list");
-            System.out.println("8. Exit");
+            System.out.println("8. Display length");
+            System.out.println("9. Exit");
             System.out.print("Enter your choice: ");
             int choice = sc.nextInt();
 
@@ -182,6 +219,9 @@ public class MenuDrivenSinglyLinkedList {
                     ll.display();
                     break;
                 case 8:
+                    ll.length();
+                    break;
+                case 9:
                     System.out.println("Exiting...");
                     sc.close();
                     return;

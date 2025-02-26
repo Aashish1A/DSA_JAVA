@@ -11,25 +11,27 @@ struct Node* tail = NULL;
 int size = 0;
 
 void createList() {
-    if (head == NULL) {
-        head = NULL;
-        tail = NULL;
-        size = 0;
-        printf("New Linked List Created!\n");
-    } else {
-        printf("A linked list already exists. Do you want to reset it? (1 for Yes / 0 for No): ");
-        int choice;
-        scanf("%d", &choice);
-        if (choice == 1) {
-            head = NULL;
-            tail = NULL;
-            size = 0;
-            printf("Linked List has been reset!\n");
-        } else {
-            printf("Continuing with the existing linked list...\n");
-        }
-    }
+    head = NULL;
+    tail = NULL;
+    size = 0;
+    printf("Linked list created successfully!\n");
 }
+
+void insertAtBeg(int data) {
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+    temp->data = data;
+    temp->next = NULL;  // Initialize next pointer
+
+    if (head == NULL) {  // If list is empty
+        head = temp;
+        tail = temp;
+    } else {
+        temp->next = head;  // Point new node to current head
+        head = temp;        // Update head
+    }
+    size++;
+}
+
 
 void insertAtEnd(int data) {
     struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
@@ -46,14 +48,23 @@ void insertAtEnd(int data) {
     size++;
 }
 
-void insertAtBeg(int data) {
-    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
-    temp->data = data;
-    temp->next = head;
-    head = temp;
-    if (tail == NULL) { 
-        tail = temp; 
+void insertAtIdx(int idx, int data) {
+    if (idx < 0 || idx > size) {
+        printf("Invalid index\n");
+        return;
     }
+    if (idx == 0) {
+        insertAtBeg(data);
+        return;
+    }
+    struct Node* temp = head;
+    for (int i = 1; i < idx; i++) {
+        temp = temp->next;
+    }
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = temp->next;
+    temp->next = newNode;
     size++;
 }
 
@@ -78,8 +89,7 @@ void deleteTail() {
     }
     if (head == tail) {
         free(head);
-        head = NULL;
-        tail = NULL;
+        head = tail = NULL;
     } else {
         struct Node* temp = head;
         while (temp->next != tail) {
@@ -87,7 +97,7 @@ void deleteTail() {
         }
         free(tail);
         tail = temp;
-        tail->next = NULL;
+        temp->next = NULL;
     }
     size--;
 }
@@ -105,16 +115,52 @@ void deleteAtIdx(int idx) {
     for (int i = 1; i < idx; i++) {
         temp = temp->next;
     }
-    struct Node* delNode = temp->next;
-    temp->next = delNode->next;
-    if (delNode == tail) {
+    struct Node* toDelete = temp->next;
+    temp->next = toDelete->next;
+    if (temp->next == NULL) {
         tail = temp;
     }
-    free(delNode);
+    free(toDelete);
     size--;
 }
 
+void length() {
+    printf("The size of linked list is: %d\n", size);
+}
+
+void searchByIdx(int idx){
+    if(idx < 0 || idx >=size){
+        printf("Invalid index\n");
+        return;
+    }
+    struct Node* temp = head;
+    for(int i=1; i<idx; i++){
+        temp = temp->next;
+    }
+    printf("The value at index %d is: %d\n", idx, temp->data);
+}
+
+void searchByValue(int value){
+    struct Node* temp = head;
+    int index = 0;
+
+    while(temp != NULL){
+        if(temp->data == value){
+            printf("The number %d is found at index %d\n", value, index);
+            return;
+        }
+        temp = temp->next;
+        index++;
+    }
+
+    printf("The number %d is not in this list", value);
+}
+
 void display() {
+    if (head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
     struct Node* temp = head;
     while (temp != NULL) {
         printf("%d -> ", temp->data);
@@ -127,14 +173,16 @@ int main() {
     int choice, data, index;
     while (1) {
         printf("\nMenu:\n");
-        printf("1. Create or Reset Linked List\n");
-        printf("2. Insert at end\n");
-        printf("3. Insert at beginning\n");
-        printf("4. Delete head\n");
-        printf("5. Delete tail\n");
-        printf("6. Delete at index\n");
-        printf("7. Display list\n");
-        printf("8. Exit\n");
+        printf("1. Create List\n");
+        printf("2. Insert at beginning\n");
+        printf("3. Insert at end\n");
+        printf("4. Insert at index\n");
+        printf("5. Delete head\n");
+        printf("6. Delete tail\n");
+        printf("7. Delete at index\n");
+        printf("8. Display list\n");
+        printf("9. Display length\n");
+        printf("10. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         
@@ -143,30 +191,40 @@ int main() {
                 createList();
                 break;
             case 2:
-                printf("Enter value to insert at end: ");
-                scanf("%d", &data);
-                insertAtEnd(data);
-                break;
-            case 3:
-                printf("Enter value to insert at beginning: ");
+                printf("Enter value: ");
                 scanf("%d", &data);
                 insertAtBeg(data);
                 break;
+            case 3:
+                printf("Enter value: ");
+                scanf("%d", &data);
+                insertAtEnd(data);
+                break;
             case 4:
-                deleteHead();
+                printf("Enter index: ");
+                scanf("%d", &index);
+                printf("Enter value: ");
+                scanf("%d", &data);
+                insertAtIdx(index, data);
                 break;
             case 5:
-                deleteTail();
+                deleteHead();
                 break;
             case 6:
+                deleteTail();
+                break;
+            case 7:
                 printf("Enter index to delete: ");
                 scanf("%d", &index);
                 deleteAtIdx(index);
                 break;
-            case 7:
+            case 8:
                 display();
                 break;
-            case 8:
+            case 9:
+                length();
+                break;
+            case 10:
                 printf("Exiting...\n");
                 return 0;
             default:

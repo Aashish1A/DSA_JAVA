@@ -22,15 +22,15 @@ public class DoublyLinkedList {
         System.out.println("null");
     }
 
-    // Display in reverse order
-    public static void displayReverse(Node tail) {
-        Node temp = tail;
-        while (temp != null) {
-            System.out.print(temp.data + " -> ");
-            temp = temp.prev;
-        }
-        System.out.println("null");
-    }
+    // // Display in reverse order
+    // public static void displayReverse(Node tail) {
+    //     Node temp = tail;
+    //     while (temp != null) {
+    //         System.out.print(temp.data + " -> ");
+    //         temp = temp.prev;
+    //     }
+    //     System.out.println("null");
+    // }
 
     // Insert at the beginning
     public static Node insertAtBeg(Node head, int data) {
@@ -133,14 +133,13 @@ public class DoublyLinkedList {
         while (true) {
             System.out.println("\nDoubly Linked List Operations:");
             System.out.println("1. Display");
-            System.out.println("2. Display Reverse");
-            System.out.println("3. Insert at Beginning");
-            System.out.println("4. Insert at End");
-            System.out.println("5. Insert at Index");
-            System.out.println("6. Delete Head");
-            System.out.println("7. Delete Tail");
-            System.out.println("8. Delete at Index");
-            System.out.println("9. Exit");
+            System.out.println("2. Insert at Beginning");
+            System.out.println("3. Insert at End");
+            System.out.println("4. Insert at Index");
+            System.out.println("5. Delete Head");
+            System.out.println("6. Delete Tail");
+            System.out.println("7. Delete at Index");
+            System.out.println("8. Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
 
@@ -151,11 +150,6 @@ public class DoublyLinkedList {
                     break;
 
                 case 2:
-                    System.out.println("Reverse Linked List:");
-                    displayReverse(tail);
-                    break;
-
-                case 3:
                     System.out.print("Enter data to insert at beginning: ");
                     data = sc.nextInt();
                     head = insertAtBeg(head, data);
@@ -164,13 +158,13 @@ public class DoublyLinkedList {
                     }
                     break;
 
-                case 4:
+                case 3:
                     System.out.print("Enter data to insert at end: ");
                     data = sc.nextInt();
                     insertAtTail(head, data);
                     break;
 
-                case 5:
+                case 4:
                     System.out.print("Enter index to insert at: ");
                     index = sc.nextInt();
                     System.out.print("Enter data to insert: ");
@@ -178,7 +172,7 @@ public class DoublyLinkedList {
                     insertAtIdx(head, index, data);
                     break;
 
-                case 6:
+                case 5:
                     System.out.println("Deleting Head...");
                     head = deleteHead(head);
                     if (head == null) {
@@ -186,18 +180,18 @@ public class DoublyLinkedList {
                     }
                     break;
 
-                case 7:
+                case 6:
                     System.out.println("Deleting Tail...");
                     deleteTail(head);
                     break;
 
-                case 8:
+                case 7:
                     System.out.print("Enter index to delete at: ");
                     index = sc.nextInt();
                     deleteAtIdx(head, index);
                     break;
 
-                case 9:
+                case 8:
                     System.out.println("Exiting...");
                     sc.close();
                     return;

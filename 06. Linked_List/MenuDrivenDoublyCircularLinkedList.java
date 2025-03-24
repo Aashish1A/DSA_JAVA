@@ -21,15 +21,14 @@ public class MenuDrivenDoublyCircularLinkedList {
         void insertAtBeg(int data) {
             Node temp = new Node(data);
             if (head == null) {
-                head = temp;
-                tail = temp;
+                head = tail = temp;
                 head.next = head;
                 head.prev = head;
             } else {
                 temp.next = head;
+                head.prev = temp;
                 temp.prev = tail;
                 tail.next = temp;
-                head.prev = temp;
                 head = temp;
             }
             size++;
@@ -43,9 +42,9 @@ public class MenuDrivenDoublyCircularLinkedList {
                 return;
             }
             temp.next = head;
+            head.prev = temp;
             temp.prev = tail;
             tail.next = temp;
-            head.prev = temp;
             tail = temp;
             size++;
         }
@@ -140,10 +139,13 @@ public class MenuDrivenDoublyCircularLinkedList {
                 return;
             }
             Node temp = head;
-            do {
+            while (true) {
                 System.out.print(temp.data + " <-> ");
                 temp = temp.next;
-            } while (temp != head);
+                if (temp == head) { // Stop when we complete the circle
+                    break;
+                }
+            }
             System.out.println("(Back to Head)");
         }
     }

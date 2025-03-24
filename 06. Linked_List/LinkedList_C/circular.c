@@ -18,19 +18,7 @@ void createList() {
         tail = NULL;
         size = 0;
         printf("New Circular Linked List Created!\n");
-    } else {
-        printf("A linked list already exists. Do you want to reset it? (1 for Yes / 0 for No): ");
-        int choice;
-        scanf("%d", &choice);
-        if (choice == 1) {
-            head = NULL;
-            tail = NULL;
-            size = 0;
-            printf("Linked List has been reset!\n");
-        } else {
-            printf("Continuing with the existing linked list...\n");
-        }
-    }
+    }  
 }
 
 // Insert at beginning

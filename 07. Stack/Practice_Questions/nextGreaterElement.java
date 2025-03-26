@@ -14,11 +14,14 @@ public class nextGreaterElement {
         //             break;
         //         }
         //     }
-        // }
+        // 
+         
         // for(int i=0; i<res.length; i++){
         //     System.out.print(res[i] + " ");  
         // }
 
-        // --------------Using Stack---------------------
+        // --------------Using Stack---------------------                                                                                                                                                                                                                                                               4u44u4
+
+
     }
 }

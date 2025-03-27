@@ -10,8 +10,10 @@ public class removeConsecutiveSubsequences {
         for(int i=0; i<n; i++){
             if(st.size()==0 || st.peek()!=arr[i]){
                 st.push(arr[i]);
-            }else if(arr[i]==st.peek()){
-                if(i==n-1 || arr[i]!=arr[i+1]) st.pop();
+            }else{
+                if(i==n-1 || arr[i]!=arr[i+1]){
+                    st.pop();
+                }
             }
         }
         int[] resultant = new int[st.size()];

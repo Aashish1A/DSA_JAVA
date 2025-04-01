@@ -1,7 +1,7 @@
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class deque {
+public class basicDeque {
     public static void main(String[] args) {
         Deque <Integer> dq = new LinkedList<>();
         // add, remove/poll peek/element

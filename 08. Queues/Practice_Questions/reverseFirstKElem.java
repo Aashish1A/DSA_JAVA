@@ -1,9 +1,6 @@
 package Practice_Questions;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class reverseFirstKElem {
     public static void main(String[] args) {
@@ -16,15 +13,19 @@ public class reverseFirstKElem {
         System.out.println(q);
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter first kth element to reverse : ");
-        int idx = sc.nextInt();
+        int k= sc.nextInt();
+        // if (k > q.size() || k <= 0){
+        //     System.out.println("Invalid value of k.");
+        //     return;
+        // }
         Stack<Integer> st = new Stack<>();
-        for(int i=0; i<idx; i++){
+        for(int i=1; i<=k; i++){
             st.push(q.remove());
         }
-        while(st.size()>0){
+        while(!st.isEmpty()){
             q.add(st.pop());
         }
-        for(int i=1; i<=idx-1; i++){
+        for(int i=1; i<=q.size()-k; i++){
             q.add(q.remove());
         }
         System.out.println(q);

@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class implementation{
 
     public static class Node{
@@ -23,6 +26,20 @@ public class implementation{
         display(root.right);
     }
 
+    // BFS
+    public static void BFS(Node root){
+        Queue<Node> q = new LinkedList<>();
+        if(root!=null) q.add(root);
+        while(q.size()>0){
+            Node temp = q.peek();
+            if(temp.left!=null) q.add(temp.left);
+            if(temp.right!=null) q.add(temp.right);
+            System.out.print(temp.data + " ");
+            q.remove();
+        }
+        
+    }
+
     public static void main(String[] args) {
         Node root = new Node(2);
         Node a = new Node(4);
@@ -36,5 +53,6 @@ public class implementation{
         Node e = new Node(11);
         b.right = e;
         display(root);
+        BFS(root);
     }
 }

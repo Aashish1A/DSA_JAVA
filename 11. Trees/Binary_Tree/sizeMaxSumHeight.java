@@ -22,10 +22,22 @@ public class sizeMaxSumHeight {
         return root.data + sumOfTree(root.left) + sumOfTree(root.right);
     }
 
+    // Product of tree
+    public static int productOfTree(Node root){
+        if(root==null) return 0;
+        return 1 * productOfTree(root.left) * productOfTree(root.right);
+    }
+
     // Max value in tree
     public static int maxValue(Node root){
        if(root==null) return 0;
        return Math.max(root.data, Math.max(maxValue(root.left), maxValue(root.right)));
+    }
+
+    // Min value in tree
+    public static int minValue(Node root){
+        if(root==null) return 0;
+        return Math.min(root.data, Math.min(minValue(root.left), minValue(root.right)));
     }
 
     // Finding height of tree
@@ -48,7 +60,9 @@ public class sizeMaxSumHeight {
         b.right = e;
         System.out.println(size(root));
         System.out.println(sumOfTree(root));
+        System.out.println(productOfTree(root));
         System.out.println(maxValue(root));
+        System.out.println(minValue(root));
         System.out.println(height(root));
     }
 }

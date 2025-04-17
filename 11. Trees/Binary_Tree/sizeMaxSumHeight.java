@@ -10,24 +10,28 @@ public class sizeMaxSumHeight {
         }
     }
 
+    // Finding size of tree
     public static int size(Node root){
         if(root==null) return 0;
         return 1 + size(root.left) + size(root.right);
     }
 
+    // Sum of tree
     public static int sumOfTree(Node root){
         if(root==null) return 0;
         return root.data + sumOfTree(root.left) + sumOfTree(root.right);
     }
 
+    // Max value in tree
     public static int maxValue(Node root){
-        if(root==null) return Integer.MIN_VALUE;
-        return Math.max(root.data, Math.max(maxValue(root.left), maxValue(root.right)));
+       if(root==null) return 0;
+       return Math.max(root.data, Math.max(maxValue(root.left), maxValue(root.right)));
     }
 
+    // Finding height of tree
     public static int height(Node root){
         if(root==null || (root.left==null && root.right==null)) return 0;
-        return 1 + Math.max(height(root.left), height(root.right));
+        return 1 + Math.max(height(root.left) , height(root.right));
     }
 
     public static void main(String[] args) {

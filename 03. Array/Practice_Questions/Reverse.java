@@ -11,9 +11,9 @@ public class Reverse {
     }
 
     public static void swap(int[] arr, int i, int j){
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+       int temp = arr[i];
+       arr[i] = arr[j];
+       arr[j] = temp;
     }
 
     public static void main(String[] args) {
@@ -27,14 +27,14 @@ public class Reverse {
         // }
         // System.out.println(Arrays.toString((reverse)));
 
-        print(arr);
-        int i=0, j=n-1;
-        while(i<j){
-            swap(arr, i, j);
-            i++;
-            j--;
-        }
-        print(arr);
+       print(arr);
+       int i=0, j=n-1;
+       while(i<j){
+        swap(arr, i, j);
+        i++;
+        j--;
+       }
+       print(arr);
         
     }
 }

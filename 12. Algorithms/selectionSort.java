@@ -6,18 +6,23 @@ public class selectionSort {
         for(int i=0; i<n; i++){
             System.out.print(arr[i] + " ");
         }
+        
         for(int i=0; i<n-1; i++){
-            boolean flag = true;
-            for(int j=0; j<n-1-i; j++){
-                if(arr[j]>arr[j+1]){
-                    int temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
-                    flag = false;
+            int min = Integer.MAX_VALUE;
+            int minIdx = -1;
+            for(int j=i; j<=n-1; j++){
+                if(min>arr[j]){
+                    min = arr[j];
+                    minIdx = j;
                 }
             }
-            if(flag==true) break;
+            // swap the min and first element of sorted path
+            // swap minIdx and i
+            int temp = arr[minIdx];
+            arr[minIdx] = arr[i];
+            arr[i] = temp;
         }
+
         System.out.println();
         System.out.println("Sorted Array : ");
         for(int i=0; i<n; i++){

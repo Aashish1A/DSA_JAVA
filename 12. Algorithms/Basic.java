@@ -9,6 +9,5 @@ public class Basic{
         int sumOfNum = (n*(n+1))/2;
         int duplicates = sum - sumOfNum;
         System.out.println("The duplicates value is : " + duplicates);
-        
     }
 }

@@ -18,7 +18,7 @@ public class bubbleSort {
             }
             if(flag==true) break;
         }
-        
+
         System.out.println();
         System.out.println("Sorted Array : ");
         for(int i=0; i<n; i++){

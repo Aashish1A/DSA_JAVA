@@ -1,4 +1,4 @@
-public class bubbleSort {
+public class mergeSort {
     public static void main(String[] args) {
         int[] arr = {6,1,7,3,2,5,4,8,9,9,10};
         int n = arr.length;

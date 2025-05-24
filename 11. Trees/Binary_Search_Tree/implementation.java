@@ -21,6 +21,20 @@ public class implementation {
         return true;
     }
 
+    // insert node
+    public static Node insert(Node root, int target){
+        if(root==null) return new Node(target);
+        if(root.data>target){
+            if(root.left==null) root.left = new Node(target);
+            else insert(root.left,target);
+        }
+        if(root.data<target){
+            if(root.right==null) root.right = new Node(target);
+            else insert(root.right, target);
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
         Node root = new Node(9);
         Node a = new Node(6);
@@ -35,5 +49,6 @@ public class implementation {
         b.left = e;
 
         System.out.println(search(root, 9));
+        insert(root, 10);
     }
 }

@@ -1,4 +1,43 @@
 public class mergeSorts {
+
+    public static void conquer(int[] arr, int si, int mid, int ei){
+        int[] merged = new int[ei - si + 1];
+
+        int idx1 = si;
+        int idx2 = mid+1;
+        int x = 0;
+
+        while(idx1 <= mid && idx2 <=ei){
+            if(arr[idx1] <= arr[idx2]){
+                merged[x] = arr[idx1];
+                x++; idx1++;
+            }else{
+                merged[x] = arr[idx2];
+                x++; idx2++;
+            }
+        }
+
+        while(idx1 <= mid){
+            merged[x++] = arr[idx1++];
+        }
+
+        while(idx2 <= ei){
+            merged[x++] = arr[idx2++];
+        }
+
+        for(int i=0, j=si; i<merged.length; i++, j++){
+            arr[j] = merged[i];
+        }
+    }
+
+    public static void divide(int[] arr, int si, int ei){
+        if(si >= ei) return;
+        int mid = si + (ei - si) / 2;
+        divide(arr, si, mid);
+        divide(arr, mid+1, ei);
+        conquer(arr, si, mid, ei);
+    }
+
     public static void main(String[] args) {
         int[] arr = {6,1,7,3,2,5,4,8,9,9,10};
         int n = arr.length;
@@ -9,49 +48,11 @@ public class mergeSorts {
         }
         System.out.println();
 
-        mergeSort(arr, 0, n-1);
+        divide(arr, 0, n-1);
 
         System.out.println("Sorted Array : ");
         for(int i=0; i<n; i++){
             System.out.print(arr[i] + " ");
-        }
-    }
-
-    // 1. Divide array into two parts, 2. Sort both parts via recursion, 3. Merge sorted parts
-    static void mergeSort(int[] arr, int left, int right) {
-        if(left < right) {
-            int mid = left + (right - left) / 2;
-            mergeSort(arr, left, mid);         // Sort left part
-            mergeSort(arr, mid+1, right);      // Sort right part
-            merge(arr, left, mid, right);      // Merge sorted parts
-        }
-    }
-
-    static void merge(int[] arr, int left, int mid, int right) {
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
-
-        int[] L = new int[n1];
-        int[] R = new int[n2];
-
-        for(int i=0; i<n1; i++)
-            L[i] = arr[left + i];
-        for(int j=0; j<n2; j++)
-            R[j] = arr[mid + 1 + j];
-
-        int i=0, j=0, k=left;
-        while(i < n1 && j < n2) {
-            if(L[i] <= R[j]) {
-                arr[k++] = L[i++];
-            } else {
-                arr[k++] = R[j++];
-            }
-        }
-        while(i < n1) {
-            arr[k++] = L[i++];
-        }
-        while(j < n2) {
-            arr[k++] = R[j++];
         }
     }
 }

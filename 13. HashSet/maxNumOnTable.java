@@ -1,7 +1,6 @@
 import java.util.HashSet;
 
 public class maxNumOnTable {
-
     public static int maximumNumberOnTable(int[] bag){
         HashSet<Integer> table = new HashSet<>();
         int max = 0;

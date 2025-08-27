@@ -14,7 +14,7 @@ public class printPermutation {
             String right = str.substring(i+1); // c
             String rem = left + right;
             printP(rem, t+ch, l);
-        }
+        } 
     }
 
     public static void main(String[] args) {

@@ -13,9 +13,8 @@ class DisjointSet{
         }
     }
     public int findUPar(int node){
-        if(node==parent.get(node)){
-            return node;
-        }
+        if(node==parent.get(node)) return node;
+        
         int ulp=findUPar(parent.get(node));
         parent.set(node,ulp);
         return parent.get(node);
